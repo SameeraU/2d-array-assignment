@@ -24,7 +24,7 @@ void draw(){
 }
 
 void mousePressed(){
-  fill(255);
+  fill(0);
  ellipse(ellipseX, ellipseY, cubeWidth, cubeHeight);
   
 }
