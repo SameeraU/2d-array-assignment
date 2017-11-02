@@ -25,8 +25,8 @@ void draw(){
   checkMousePressed();
   dropDisk();
 }
-int blankCube(int x){
-  for (int i = rows-1; i >= 0; i --){
+int blankCube(int j){
+  for (int i = rows-1; i >= 0; i--){
     if (board[i][j] == 0){
       return i;
     }
