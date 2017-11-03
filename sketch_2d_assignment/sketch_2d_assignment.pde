@@ -3,68 +3,73 @@
 
 //test
 
-int cols, rows;
+int cols = 7;
+int rows = 6;
 int [][] board = new int [cols][rows];
 
-int cubeHeight, cubeWidth;
-boolean dropObject =false;
+int cubeSize = 100;
+int turn= 1;
 
 void setup(){
   size(700, 600);
-  cols = 7;
-  rows = 6;
-  cubeHeight = height/rows;
-  cubeWidth = width/cols;
-  //ellipseX= int(mouseX/cubeWidth);
-  //ellipseY = int(mouseY/cubeHeight);
+
+  
+  ellipseMode(CORNER);
+  
+  
 }
 
 void draw(){
-  
   displayBoard();
-  checkMousePressed();
-  dropDisk();
-}
-int blankCube(int j){
-  for (int i = rows-1; i >= 0; i--){
-    if (board[i][j] == 0){
-      return i;
-    }
-    else{ 
-      return -1;
-     }
-  }
-}      
-
-void checkMousePressed(){
-  int x = mouseX/cubeWidth;
-  int ellipseY = blankCube(x);
-  if (mousePressed){
-    dropObject = true;
-  }
-   //else{
-   //dropObject = false;
-  //}//
- 
-}
-
-      
-void dropDisk(){
-  int y= mouseY;
-  int x = mouseX;
-  if (dropObject == true){
-    
-   stroke(0);
-   ellipse(x, y, 60, 60);
-  }
-}
   
+}
+
+
+int blankCube(int x){
+  for (int y = rows-1; y>= 0; y --){
+    if (board[x][y] == 0) {
+      return y;
+    }
+  }
+  return -1;
+}
+
+void mousePressed(){
+  int ellipseX = mouseX/cubeSize;
+  int ellipseY = blankCube(ellipseX);
+  
+  if (ellipseY >= 0){
+    board[ellipseX][ellipseY] =turn;
+    if (turn ==1){
+      turn =2;
+    }
+    else{
+     turn =1;
+    }
+  }
+
+    
+}
 void displayBoard(){
-  strokeWeight(3);
+  
   for (int x = 0; x< cols; x ++){
     for (int y = 0; y<rows; y++){
-      rect(x*cubeWidth, y*cubeHeight, cubeWidth, cubeHeight);
+      fill(255);
+      stroke(1);
+      strokeWeight(3);
+      rect(x*cubeSize, y*cubeSize, cubeSize, cubeSize);
+      if (board[x][y] > 0){
+        if (board[x][y] == 1){
+          fill(0, 0, 255);
+        }
+        else if (board[x][y] == 2){
+          fill(244, 245, 2);
+        }
+        stroke(1);
+        ellipse( cubeSize*x, cubeSize*y, cubeSize, cubeSize);
+      }   
     }
   }
+  
   
 }
