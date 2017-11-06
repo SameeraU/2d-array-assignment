@@ -59,15 +59,17 @@ void dropTheDisk() {
             if (y < rows-1) { 
               //if (board[x][y+1] != 1){
                 board[x][ellipseY] = 2;
-                print(ellipseY);
+                print(ellipseY, x, y);
               //}
             }
+             
           }
            else if (board[x][y] == 1) {  
               board[x][y] = 0;
               if (y < rows-1) {
                 board[x][ellipseY] = 1;
               }
+             
            }
         }
       }
