@@ -8,6 +8,7 @@ int rows = 6;
 int [][] board = new int [cols][rows];
 int state, onTop;
 int cubeSize = 100;
+int ellipseSize = 80;
 int turn= 1;
 int ellipseY;
 void setup(){
@@ -81,10 +82,13 @@ void displayBoard(){
   
   for (int x = 0; x< cols; x ++){
     for (int y = 0; y<rows; y++){
+      fill(#34F5D9);
+      noStroke();
+      strokeWeight(2);
+      rect(x*cubeSize, y*cubeSize, cubeSize, cubeSize);
       fill(255);
       stroke(1);
-      strokeWeight(3);
-      rect(x*cubeSize, y*cubeSize, cubeSize, cubeSize);
+      ellipse( cubeSize*x, cubeSize*y,ellipseSize, ellipseSize);
       if (board[x][y] > 0){
         if (board[x][y] == 1){
           fill(255, 0, 0);
@@ -93,8 +97,9 @@ void displayBoard(){
           fill(244, 245, 2);
         }
         stroke(1);
-        ellipse( cubeSize*x, cubeSize*y, cubeSize, cubeSize);
+        ellipse( cubeSize*x, cubeSize*y, ellipseSize, ellipseSize);
       }   
     }
-  }  
+  } 
+  
 }
