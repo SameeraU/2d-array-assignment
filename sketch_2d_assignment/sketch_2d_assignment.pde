@@ -47,6 +47,20 @@ void mousePressed(){
   int ellipseX = mouseX/cubeSize;
   int ellipseY = blankCube(ellipseX);
   ellipseDX = int(random(1, 7));
+  
+  for (int i  = 0; i< cols; i++){
+    for (int j = 0; j< rows; j++){
+      if (validDiskPosition(i, j) != 0 && validDiskPosition(i, j) == validDiskPosition(i + 1, j) && validDiskPosition(i, j) == validDiskPosition(i + 2, j)){
+        ellipseDX = i + 3;
+      }
+      else if (validDiskPosition(i, j) != 0 && validDiskPosition(i, j) == validDiskPosition(i + 1, j) && validDiskPosition(i, j) == validDiskPosition(i + 3, j)){
+        ellipseDX = i + 2;
+      }
+      else if (validDiskPosition(i, j) != 0 && validDiskPosition(i, j) == validDiskPosition(i + 2, j) && validDiskPosition(i, j) == validDiskPosition(i + 3, j)){
+        ellipseDX = i + 1;
+      }
+    }
+  }
   int ellipseDY = blankCube(ellipseDX);
   if (ellipseY >= 0 && ellipseDY >= 0){
     if (turn ==1){
